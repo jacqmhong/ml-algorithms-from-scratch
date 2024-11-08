@@ -70,3 +70,23 @@ class KNearestNeighbors:
             float: Euclidean distance between x1 and x2.
         """
         return np.sqrt(np.sum((x1 - x2) ** 2))
+
+
+"""
+To Test Implementation:
+
+# Sample data
+X_train = np.array([[1, 2], [2, 3], [3, 3], [6, 5], [7, 8]])
+y_train = np.array([0, 0, 0, 1, 1])
+
+# Initialize and train k-NN
+knn = KNearestNeighbors(k=3)
+knn.fit(X_train, y_train)
+
+# Test data
+X_test = np.array([[3, 4], [5, 5]])
+
+# Predictions
+predictions = knn.predict(X_test)
+print("Predictions:", predictions)
+"""
