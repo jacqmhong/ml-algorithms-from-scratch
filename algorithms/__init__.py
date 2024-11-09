@@ -6,7 +6,7 @@
 # from .logistic_regression import LogisticRegression
 # from .decision_tree import DecisionTree
 # from .random_forest import RandomForest
-# from .k_means import KMeans
+from .k_means import KMeans
 from .knn import KNearestNeighbors
 # from .pca import PCA
 # from .gradient_descent import GradientDescent
@@ -14,13 +14,12 @@ from .knn import KNearestNeighbors
 # from .adaboost import AdaBoost
 
 __all__ = [
-    "KNearestNeighbors"
     # "LinearRegression",
     # "LogisticRegression",
     # "DecisionTree",
     # "RandomForest",
-    # "KMeans",
-    # "KNearestNeighbors",
+    "KMeans",
+    "KNearestNeighbors",
     # "PCA",
     # "GradientDescent",
     # "NaiveBayes",

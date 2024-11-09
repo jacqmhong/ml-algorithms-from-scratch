@@ -1,6 +1,9 @@
-# knn.py
+# k-Nearest Neighbors
+
 import numpy as np
+
 from collections import Counter
+from utils.distance_metrics import euclidean_distance
 
 class KNearestNeighbors:
     def __init__(self, k=5):
@@ -49,7 +52,7 @@ class KNearestNeighbors:
             int: Predicted class label (the majority vote of the k nearest samples).
         """
         # Compute distances from x to all training samples
-        distances = [self._euclidean_distance(x, x_train) for x_train in self.X_train]
+        distances = [euclidean_distance(x, x_train) for x_train in self.X_train]
 
         # Get the indices and labels of the k nearest samples
         k_indices = np.argsort(distances)[:self.k]
@@ -58,18 +61,6 @@ class KNearestNeighbors:
         # Return the most common label (majority vote)
         most_common = Counter(k_nearest_labels).most_common(1)
         return most_common[0][0]
-
-    def _euclidean_distance(self, x1, x2):
-        """
-        Calculates the Euclidean distance between two points.
-
-        Parameters:
-            x1, x2 (ndarray): Data points of shape (n_features,).
-
-        Returns:
-            float: Euclidean distance between x1 and x2.
-        """
-        return np.sqrt(np.sum((x1 - x2) ** 2))
 
 
 """
