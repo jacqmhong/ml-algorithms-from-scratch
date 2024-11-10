@@ -28,7 +28,7 @@ class KMeans:
                 * y is not used - it is here to maintain consistency among classifiers
         """
         # Initialize the starting centroids
-        self._init_centroids(X)
+        self._init_centroids_kmeans_plus(X)
 
         for _ in range(self.max_iter):
             # Assign each sample of X to its nearest centroid (cluster)
@@ -42,16 +42,41 @@ class KMeans:
                 break
             self.centroids = new_centroids
 
-    def _init_centroids(self, X):
+    def _init_centroids_random(self, X):
         """
         Randomly initializes centroids by picking getting indices of X and selecting the corresponding samples.
 
         Parameters:
             X (ndarray): Feature matrix of shape (n_samples, n_features).
         """
-        # TODO: optimize centroid initialization
         random_indices = np.random.choice(len(X), self.num_clusters, replace=False)
         self.centroids = X[random_indices]
+
+    def _init_centroids_kmeans_plus(self, X):
+        """
+        An optimized initialization of centroids by using the kmeans++ algorithm.
+
+        Parameters:
+            X (ndarray): Feature matrix of shape (n_samples, n_features).
+        """
+        # The first centroid is initialized randomly
+        self.centroids = [X[np.random.choice(len(X))]]
+
+        for _ in range(1, self.num_clusters):
+            # Distances from each point to the nearest centroid
+            distances = np.empty(len(X))
+            for i, x in enumerate(X):
+                distances[i] = min(np.linalg.norm(x - c) ** 2 for c in self.centroids)
+
+            probabilities = distances / distances.sum() # p = distance_i / sum of distances
+            cumulative_probs = np.cumsum(probabilities)
+
+            # Ensures that centroids are spread out via simulated weighted random sampling
+            r = np.random.rand()
+            next_centroid = X[np.searchsorted(cumulative_probs, r)]
+            self.centroids.append(next_centroid)
+
+        self.centroids = np.array(self.centroids)
 
     def _assign_clusters(self, X):
         """
