@@ -2,7 +2,7 @@
 # Importing each algorithm as part of the 'algorithms' package
 
 # TODO Algorithms:
-# from .linear_regression import LinearRegression
+from .linear_regression import LinearRegression
 # from .logistic_regression import LogisticRegression
 # from .decision_tree import DecisionTree
 # from .random_forest import RandomForest
@@ -14,7 +14,7 @@ from .knn import KNearestNeighbors
 # from .adaboost import AdaBoost
 
 __all__ = [
-    # "LinearRegression",
+    "LinearRegression",
     # "LogisticRegression",
     # "DecisionTree",
     # "RandomForest",
