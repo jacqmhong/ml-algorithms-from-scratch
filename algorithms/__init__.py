@@ -3,7 +3,7 @@
 
 # TODO Algorithms:
 from .linear_regression import LinearRegression
-# from .logistic_regression import LogisticRegression
+from .logistic_regression import LogisticRegression
 # from .decision_tree import DecisionTree
 # from .random_forest import RandomForest
 from .k_means import KMeans
@@ -15,7 +15,7 @@ from .knn import KNearestNeighbors
 
 __all__ = [
     "LinearRegression",
-    # "LogisticRegression",
+    "LogisticRegression",
     # "DecisionTree",
     # "RandomForest",
     "KMeans",
